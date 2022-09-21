@@ -7,28 +7,31 @@ def getTextFromVideo():
     folderLs = os.listdir("videos")
     print(folderLs)
 
-
     for title in folderLs:
-        titleWithOUtExt = title.split(".")[0]
-        # video = mp.VideoFileClip(f"videos/{titleWithOUtExt}.mp4")
-        # audio = video.audio
-
-        # audio.write_audiofile(f"audios/{titleWithOUtExt}.wav")
-
-        r = sr.Recognizer()
-
-        with sr.AudioFile(f"audios/{titleWithOUtExt}.wav") as source:
-            audio = r.record(source, duration=100)
-
         try:
-            text = r.recognize_google(audio, language="es-ES")
+            titleWithOUtExt = title.split(".mp4")[0]
+            video = mp.VideoFileClip(f"videos/{titleWithOUtExt}.mp4")
+            audio = video.audio
+
+            audio.write_audiofile(f"audios/{titleWithOUtExt}.wav")
+
+            r = sr.Recognizer()
+
+            with sr.AudioFile(f"audios/{titleWithOUtExt}.wav") as source:
+                audio = r.record(source, duration=100)
+
             try:
-                with open(f"textos/{titleWithOUtExt}.txt", "w") as f:
-                    f.write(text)
+                text = r.recognize_google(audio, language="es-ES")
+                try:
+                    with open(f"textos/{titleWithOUtExt}.txt", "w") as f:
+                        f.write(text)
+                except:
+                    print("Error writing text")
             except:
-                print("Error writing text")
+                print("Error")
         except:
-            print("Error")
+            print("Error to split")
+        
 
 
 if __name__ == "__main__":
