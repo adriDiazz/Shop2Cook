@@ -1,4 +1,3 @@
-from array import array
 import os
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
@@ -15,7 +14,7 @@ def getVideoUrls(qToSearch):
         q = str(qToSearch),
         part = 'snippet',
         type = 'video',
-        maxResults = 10
+        maxResults = 2
     )
 
     res = request.execute()
