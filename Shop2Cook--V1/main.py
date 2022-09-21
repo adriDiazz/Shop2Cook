@@ -5,7 +5,7 @@ import utils
 import os
 
 if __name__ == "__main__":
-
+    utils.createFolders()
     toSearch = input("Enter the video name: ")
 
     videosToDownload = YTVideoDownloader.download(toSearch)

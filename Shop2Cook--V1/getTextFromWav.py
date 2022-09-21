@@ -2,7 +2,7 @@ import speech_recognition as sr
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import os
-
+import shutil
 
 r = sr.Recognizer()
 
@@ -51,9 +51,11 @@ def getTranscription():
                     
                     print(chunk_filename, ":", text)
                     whole_text += text + "\n"
-
         try:
             with open(f"textos/{title}.txt", "w", encoding="utf-8") as f:
                 f.write(whole_text)
         except:
             print("Error writing text")
+        # borramos los audios temporales
+        shutil.rmtree("audio-chunks")
+        os.mkdir("audio-chunks")

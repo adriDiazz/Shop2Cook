@@ -1,4 +1,6 @@
+import os
 import re
+
 def remove_emojis(data):
     emoj = re.compile("["
         u"\U0001F600-\U0001F64F"  # emoticons
@@ -21,3 +23,11 @@ def remove_emojis(data):
         u"\u3030"
                       "]+", re.UNICODE)
     return re.sub(emoj, '', data)
+
+def createFolders():
+    if not os.path.exists("videos"):
+        os.mkdir("videos")
+    if not os.path.exists("audios"):
+        os.mkdir("audios")
+    if not os.path.exists("textos"):
+        os.mkdir("textos")
