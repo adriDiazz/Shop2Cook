@@ -1,5 +1,5 @@
 import getAudioFromVideo
-import downloadVideos
+import YTVideoDownloader
 import getTextFromWav
 import utils
 import os
@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     toSearch = input("Enter the video name: ")
 
-    videosToDownload = downloadVideos.downloadVideos(toSearch)
+    videosToDownload = YTVideoDownloader.download(toSearch)
     folderVs = os.listdir("videos")
     for video in folderVs:
         os.rename("videos/" + video, "videos/" + utils.remove_emojis(video))

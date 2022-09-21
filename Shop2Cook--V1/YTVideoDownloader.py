@@ -2,7 +2,7 @@ import getVideosFromYT
 import pytube
 
 
-def downloadVideos(toSearch):
+def download(toSearch):
     videosToDownload = getVideosFromYT.getVideoUrls(str(toSearch))
 
     for video in videosToDownload:
