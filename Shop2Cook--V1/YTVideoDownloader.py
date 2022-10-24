@@ -14,3 +14,10 @@ def download(toSearch):
             continue
 
     return videosToDownload
+
+
+def download_playlist(link):
+    play_list = pytube.Playlist(link)
+
+    for video in play_list.videos:
+        video.streams.filter(file_extension="mp4").first().download('videos')
